@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // jeszcze tutaj nic nie ma
+  title = 'Lista zadań';
+
+  getFooter() {
+    return '2019 © Lista zadań zbudowana w Angularze.';
+  }
 }
