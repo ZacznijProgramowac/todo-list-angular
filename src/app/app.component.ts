@@ -8,7 +8,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Lista zadań';
 
-  getFooter() {
-    return '2019 © Lista zadań zbudowana w Angularze.';
+  // usuwamy datę ze zwracanego tekstu
+  getFooter(): string {
+    return '© Lista zadań zbudowana w Angularze.';
+  }
+
+  // dodajemy nową metodę, która zwraca datę
+  getDate(): Date {
+    return new Date();
   }
 }
