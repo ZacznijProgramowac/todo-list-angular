@@ -6,15 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Lista zadań';
+  // nowy obiekt konfiguracyjny
+  config: { [key: string]: string | Date } = null;
 
-  // usuwamy datę ze zwracanego tekstu
-  getFooter(): string {
-    return '© Lista zadań zbudowana w Angularze.';
-  }
-
-  // dodajemy nową metodę, która zwraca datę
-  getDate(): Date {
-    return new Date();
+  constructor() {
+    // dodajemy metodę setTimeout z opóźnieniem 500ms
+    // w środku inicjalizujemy nasz obiekt config
+    setTimeout(() => {
+      // inicjalizacja obiektu
+      this.config = {
+        title: 'Lista zadań',
+        footer: '© Lista zadań zbudowana w Angularze.',
+        date: new Date()
+      };
+    }, 500);
   }
 }

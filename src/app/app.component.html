@@ -1,8 +1,9 @@
 <div class="container mt-5">
   <nav class="row">
     <div class="nav-wrapper">
-      <!-- Poniżej dodajemy pipe uppercase -->
-      <span class="brand-logo center">{{title | uppercase}}</span>
+      <!-- Zmieniamy zmienną title na config.title -->
+      <!-- Dostawiamy po config question mark: ? -->
+      <span class="brand-logo center">{{config?.title | uppercase}}</span>
     </div>
   </nav>
   <div class="content">
@@ -48,9 +49,9 @@
 
   <footer class="page-footer mt-5">
     <div class="footer-copyright">
-      <!-- Wyświetlamy datę i tekst oddzielnie -->
-      <!-- Dodajemy pipe 'date' z parametrem -->
-      <div class="container">{{getDate() | date: 'yyy'}} {{getFooter()}}</div>
+      <!-- Nie wywołujemy metod tylko pola z obiektu 'config' -->
+      <!-- Dostawiamy po config question mark: ? -->
+      <div class="container">{{config?.date | date: 'yyy'}} {{config?.footer}}</div>
     </div>
   </footer>
 </div>
