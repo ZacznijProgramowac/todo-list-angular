@@ -12,19 +12,28 @@
       </button>
     </div>
 
+    <!-- Sekcja dodawania nowego zadania -->
     <div class="row">
-      <input class="col s8" type="text" placeholder="Dodaj zadanie i datę wykonania"/>
-      <input class="col s2 disabled" type="date"/>
-      <button class="btn-floating">+
+      <input class="col s8" type="text"
+             placeholder="Dodaj zadanie i datę wykonania"
+             #nameInput/> <!-- tworzymy lokalną referencję -->
+
+      <!-- dodajemy referencję #dateInput -->
+      <input class="col s2 disabled" type="date" #dateInput/>
+      <!-- dodajemy metodę (click) z metodą createTask() -->
+      <!-- przesyłamy wartość z pola input odwołujać się do #nameInput -->
+      <!-- drugimm wyrażeniem, czyścimy pole input -->
+      <!-- przesyłamy wartość z pola date odwołujać się do #dateInput i czyścimy pole-->
+      <button class="btn-floating"
+              (click)="createTask(nameInput.value, dateInput.value);
+                   nameInput.value = '';
+                   dateInput.value = '' ">+
       </button>
     </div>
 
     <ul class="collection">
-      <!-- ngFor umieszczamy w elemencie li-->
-      <!-- dodajemy let i = index do pętli ngFor -->
       <li class="collection-item row" *ngFor="let task of tasks; let i = index">
           <span class="col s10">
-            <!-- Wyświetlenie danych z task-->
             {{i + 1}}. {{ task.name }} - {{task.deadline |  date: 'd.MM EEEE':'':'pl'}}
           </span>
         <div class="col s2 right-align">
@@ -43,7 +52,8 @@
 
     <h1>Dzisiaj brak zadań :-)</h1>
 
-    <button class="btn red">
+    <!-- Dodajemy event (click) i przypisujemy metodę clearTasks -->
+    <button class="btn red" (click)="clearTasks()">
       Wyczyść
     </button>
   </div>

@@ -8,7 +8,6 @@ import { Task } from './task';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // Lista z zadaniami do wyświetlenia
   tasks: Task [] = [
     {
       name: 'Siłownia',
@@ -36,5 +35,21 @@ export class AppComponent {
         date: new Date()
       };
     }, 500);
+  }
+  // towrzymy metodę do czyszczenia listy
+  clearTasks() {
+    this.tasks = [];
+  }
+
+  // metoda tworzy zadanie i dodaje do listy zadań
+  // dodajemy parametr name, któy otrzyma wartość z widoku HTML
+  // dodajemy parametr date typu string
+  createTask(name: string, date: string) {
+    const task = {
+      name: name, // przypisujemy name
+      deadline: date, // przypisujemy datę
+      done: false
+    };
+    this.tasks.push(task);
   }
 }
