@@ -17,6 +17,6 @@ input[type="date"].disabled::-webkit-inner-spin-button {
 
 .content {
   overflow: auto;
-  height: 500px;
-  max-height: 500px;
+  height: 550px;
+  max-height: 550px;
 }

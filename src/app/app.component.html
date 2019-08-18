@@ -1,8 +1,6 @@
 <div class="container mt-5">
   <nav class="row">
     <div class="nav-wrapper">
-      <!-- Zmieniamy zmienną title na config.title -->
-      <!-- Dostawiamy po config question mark: ? -->
       <span class="brand-logo center">{{config?.title | uppercase}}</span>
     </div>
   </nav>
@@ -22,9 +20,12 @@
     </div>
 
     <ul class="collection">
-      <li class="collection-item row">
+      <!-- ngFor umieszczamy w elemencie li-->
+      <!-- dodajemy let i = index do pętli ngFor -->
+      <li class="collection-item row" *ngFor="let task of tasks; let i = index">
           <span class="col s10">
-            1. Siłownia - 02.01 czwartek
+            <!-- Wyświetlenie danych z task-->
+            {{i + 1}}. {{ task.name }} - {{task.deadline |  date: 'd.MM EEEE':'':'pl'}}
           </span>
         <div class="col s2 right-align">
           <button class="btn-floating btn-small red mr-5">
@@ -49,8 +50,6 @@
 
   <footer class="page-footer mt-5">
     <div class="footer-copyright">
-      <!-- Nie wywołujemy metod tylko pola z obiektu 'config' -->
-      <!-- Dostawiamy po config question mark: ? -->
       <div class="container">{{config?.date | date: 'yyy'}} {{config?.footer}}</div>
     </div>
   </footer>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+// import interfejsu Task
+import { Task } from './task';
 
 @Component({
   selector: 'app-root',
@@ -6,14 +8,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // nowy obiekt konfiguracyjny
+  // Lista z zadaniami do wyświetlenia
+  tasks: Task [] = [
+    {
+      name: 'Siłownia',
+      deadline: '2020-01-02',
+      done: false
+    },
+    {
+      name: 'Nauka Angulara',
+      deadline: '2020-01-03',
+      done: false
+    },
+    {
+      name: 'Sprzątanie kuwety',
+      deadline: '2020-01-04',
+      done: false
+    }
+  ];
   config: { [key: string]: string | Date } = null;
 
   constructor() {
-    // dodajemy metodę setTimeout z opóźnieniem 500ms
-    // w środku inicjalizujemy nasz obiekt config
     setTimeout(() => {
-      // inicjalizacja obiektu
       this.config = {
         title: 'Lista zadań',
         footer: '© Lista zadań zbudowana w Angularze.',
