@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// import interfejsu Task
 import { Task } from './task';
 
 @Component({
@@ -36,18 +35,15 @@ export class AppComponent {
       };
     }, 500);
   }
-  // towrzymy metodę do czyszczenia listy
+
   clearTasks() {
     this.tasks = [];
   }
 
-  // metoda tworzy zadanie i dodaje do listy zadań
-  // dodajemy parametr name, któy otrzyma wartość z widoku HTML
-  // dodajemy parametr date typu string
   createTask(name: string, date: string) {
     const task = {
-      name: name, // przypisujemy name
-      deadline: date, // przypisujemy datę
+      name: name,
+      deadline: date,
       done: false
     };
     this.tasks.push(task);

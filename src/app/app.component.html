@@ -12,22 +12,20 @@
       </button>
     </div>
 
-    <!-- Sekcja dodawania nowego zadania -->
     <div class="row">
+      <!-- Dodajemy event (keyup) -->
       <input class="col s8" type="text"
              placeholder="Dodaj zadanie i datę wykonania"
-             #nameInput/> <!-- tworzymy lokalną referencję -->
+             (keyup)="0"
+             #nameInput/>
 
-      <!-- dodajemy referencję #dateInput -->
       <input class="col s2 disabled" type="date" #dateInput/>
-      <!-- dodajemy metodę (click) z metodą createTask() -->
-      <!-- przesyłamy wartość z pola input odwołujać się do #nameInput -->
-      <!-- drugimm wyrażeniem, czyścimy pole input -->
-      <!-- przesyłamy wartość z pola date odwołujać się do #dateInput i czyścimy pole-->
+      <!-- Na końcu dodajemy bindowanie z property [disabled] -->
       <button class="btn-floating"
               (click)="createTask(nameInput.value, dateInput.value);
                    nameInput.value = '';
-                   dateInput.value = '' ">+
+                   dateInput.value = '' "
+              [disabled]="nameInput.value === '' ">+
       </button>
     </div>
 
@@ -52,8 +50,8 @@
 
     <h1>Dzisiaj brak zadań :-)</h1>
 
-    <!-- Dodajemy event (click) i przypisujemy metodę clearTasks -->
-    <button class="btn red" (click)="clearTasks()">
+    <!-- Bindujemy do property disabled -->
+    <button class="btn red" (click)="clearTasks()" [disabled]="tasks.length === 0">
       Wyczyść
     </button>
   </div>
