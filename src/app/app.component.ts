@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Task } from './task';
-// nowy import biblioteki moment
 import * as moment from 'moment';
 
 @Component({
@@ -9,9 +8,9 @@ import * as moment from 'moment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // nowe pole w klasie kompoenntu
+  // nowe pole do sterowania przyciskami
+  editMode = false;
   taskName = 'Sugerowane zadanie codzienne: odkurzanie';
-  // nowe pole reprezentujące datę
   taskDate = moment().format('YYYY-MM-DD');
   tasks: Task [] = [
     {
@@ -22,7 +21,7 @@ export class AppComponent {
     {
       name: 'Nauka Angulara',
       deadline: '2020-01-03',
-      done: false
+      done: true
     },
     {
       name: 'Sprzątanie kuwety',
@@ -46,14 +45,14 @@ export class AppComponent {
     this.tasks = [];
   }
 
-  // Usuwamy parametry z metody
   createTask() {
     const task = {
-      name: this.taskName, // do nazwy przypisujemy pole taskName
-      deadline: this.taskDate, // do daty podstawimy pole taskDate
+      name: this.taskName,
+      deadline: this.taskDate,
       done: false
     };
     this.tasks.push(task);
-    this.taskName = ''; // po dodaniu zadania, czyścimy pole
+    this.taskName = '';
+
   }
 }
