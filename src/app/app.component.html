@@ -7,16 +7,12 @@
   <div class="content">
 
     <div class="row">
-      <!-- Dodajemy ng-contanier do użycia dyrektywy *ngIf -->
       <ng-container *ngIf="editMode; then editOn; else editOff"></ng-container>
-      <!-- Dodajemy ng-template -->
       <ng-template #editOff>
-        <!-- Dodajemy eventy click -->
         <button class="btn col s2 offset-s10" (click)="editMode = !editMode">
           Dodaj zadanie
         </button>
       </ng-template>
-      <!-- Dodajemy kolejne ng-template -->
       <ng-template #editOn>
         <button class="btn col s2 offset-s10" (click)="editMode = !editMode">
           Zakończ
@@ -35,35 +31,27 @@
               [disabled]="taskName === '' ">+
       </button>
     </div>
-    <!-- Dodajemy *ngIf z opcją else-->
     <ul class="collection" *ngIf="tasks.length > 0; else noTasks">
-      <!-- Dodajemy ng-container z ngFor, które usunięte zostało z elementu li-->
-      <!-- Dodajemy ngSwitch które sprawdza pole done w obiekcie task -->
       <ng-container *ngFor="let task of tasks; let i = index" [ngSwitch]="task.done">
-        <!-- Sprawdzamy za pomocą  *ngSwitchCase czy ten element ma się pojawić -->
         <li class="collection-item row" *ngSwitchCase="false">
           <span class="col s10">
             {{i + 1}}. {{ task.name }} - {{task.deadline |  date: 'd.MM EEEE':'':'pl'}}
           </span>
           <div class="col s2 right-align">
-            <button class="btn-floating btn-small red mr-5">
+            <button class="btn-floating btn-small red mr-5" (click)="delete(task)">
               <i class="material-icons">remove</i>
             </button>
-            <button class="btn-floating btn-small green">
+            <button class="btn-floating btn-small green" (click)="markAsDone(task)">
               <i class="material-icons">check</i>
             </button>
           </div>
         </li>
-        <!-- Sprawdzamy za pomocą  *ngSwitchCase czy ten element ma się pojawić -->
         <li class="collection-item row" *ngSwitchCase="true">
-          <!-- Interpolacją wyświetlamy zadanie  -->
           <span class="col done">{{task.name}}</span>
         </li>
-        <!-- Tutaj kończymy element ng-container -->
       </ng-container>
     </ul>
 
-    <!-- Zamiast *ngIf używamy ng-template -->
     <ng-template #noTasks>
       <h1>Dzisiaj brak zadań :-)</h1>
     </ng-template>

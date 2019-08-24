@@ -8,7 +8,6 @@ import * as moment from 'moment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // nowe pole do sterowania przyciskami
   editMode = false;
   taskName = 'Sugerowane zadanie codzienne: odkurzanie';
   taskDate = moment().format('YYYY-MM-DD');
@@ -39,6 +38,7 @@ export class AppComponent {
         date: new Date()
       };
     }, 500);
+    this.sort();
   }
 
   clearTasks() {
@@ -53,6 +53,34 @@ export class AppComponent {
     };
     this.tasks.push(task);
     this.taskName = '';
+    this.sort(); // dodajemy sortowanie
+  }
 
+  // dodajemy metodę delete
+  delete(task: Task) {
+    this.tasks = this.tasks.filter(e => e !== task);
+  }
+
+  // dodajemy metodę markAsDone
+  markAsDone(task: Task) {
+    const taskDone = this.tasks.find(e => e === task);
+    taskDone.done = true;
+    this.sort(); // dodajemy sortowanie
+  }
+
+  // dodajemy sortowanie
+  private sort() {
+    this.tasks = this.tasks.sort((a: Task, b: Task) => (a.done === b.done) ? 0 : a.done ? 1 : -1);
+  }
+
+  private sort2() {
+    this.tasks = this.tasks.sort((a: Task, b: Task) => {
+      if (a.done === b.done) {
+        return 0;
+      } else if (a.done) {
+        return 1;
+      }
+      return -1;
+    });
   }
 }
